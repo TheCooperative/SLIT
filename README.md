@@ -22,9 +22,8 @@ You can ether add files manually by placing them in the folder under the currect
 
 
 ## Git pull
-When a update to the project is made or you're behind on the code, you can use **git pull** to get your branch up to speed. Be sure that you're on the branch you want to copy the code to, this is usually your personal brach. 
+When a update to the project is made or you're behind on the code, you can use **git pull** to get your branch up to speed. Be sure that you're on the branch you want to copy the code to, this is usually your personal brach. When that's done you have the code, but it's not publiched on your branch. It's only stored localy on your pc, so you can continue working on the code and experiment and late publish it to your branch.
 - git pull origin (branchname)
-When this is done you have the code, but it's not publiched on your branch. It's only stored localy on your pc, so you can continue working on the code and experiment and late publish it to your branch.
 
 
 ## Committing
