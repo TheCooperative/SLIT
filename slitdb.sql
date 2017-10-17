@@ -1,4 +1,3 @@
-create schema slitdb;
 use slitdb;
 
 create table userAccount(
@@ -15,3 +14,15 @@ create table userAccount(
 /* update userAccount set lastLogin = now() where id = 1; Dette er for å teste om lærer/student fungerer som d skal.*/
 
 drop table userAccount;
+
+create table module(
+	id int primary key,
+    title varchar(250),
+    description varchar(250),
+    goals varchar(250),
+    resorces varchar(250),
+    task varchar(250),
+    deadline datetime
+);
+
+drop table module;
