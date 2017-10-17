@@ -49,8 +49,10 @@ public class ValidateUser {
             lastName = rs.getString("lastName");
             role = rs.getInt("role");
             
-            lastLogin = rs.getTimestamp("lastLogin");
-            lastLoginTime = new SimpleDateFormat("dd.MM.yyyy - HH:mm").format(lastLogin);
+           lastLogin = rs.getTimestamp("lastLogin");
+           if(lastLogin != null){
+           lastLoginTime = new SimpleDateFormat("dd.MM.yyyy - HH:mm").format(lastLogin);
+           }
 
         }
         } catch(SQLException e) {
