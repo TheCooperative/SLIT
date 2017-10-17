@@ -17,10 +17,10 @@ drop table userAccount;
 
 create table module(
 	id int primary key,
-    title varchar(250),
+    title varchar(75),
     description varchar(250),
     goals varchar(250),
-    resorces varchar(250),
+    resources varchar(250),
     task varchar(250),
     deadline datetime
 );
