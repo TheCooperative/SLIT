@@ -62,6 +62,7 @@ public class CreateModuleServlet extends HttpServlet {
                 ps.setString(5, newResource);
                 ps.setString(6, newTask);
                 ps.setDate(7, Date.valueOf(stringDeadline));
+                ps.executeQuery();
                 createdModule = true;
             }
         } catch(SQLException e){
