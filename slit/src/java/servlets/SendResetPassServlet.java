@@ -5,82 +5,51 @@
  */
 package servlets;
 
+import db.DBConnectionManager;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lib.RandomStringGenerator;
 
 /**
  *
  * @author Martin
  */
+@WebServlet(name = "SendResetPassServlet", urlPatterns = {"/SendResetPassServlet"})
 public class SendResetPassServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LostPassMailServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LostPassMailServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
+  
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            Connection conn;
+            PreparedStatement ps;
+            conn = DBConnectionManager.getConnection();
+            boolean sucessfullySent = false;
+            
+            String email = request.getParameter("email");
+            RandomStringGenerator rsg = new RandomStringGenerator();
+            String verificationCode = rsg.generateRandom();
+             
+                try {
+                String sql = "UPDATE userAccount set resetVerification = ? WHERE email=?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, verificationCode);
+                ps.setString(2, email);
+                ps.executeUpdate();
+                System.out.println("check");
+                sucessfullySent = true;
+                
+            } catch (SQLException e) { 
+                    System.out.println("Driver not found "+e);
+                    sucessfullySent = false;
+        }
+                if(sucessfullySent){
+                    response.sendRedirect("index.jsp");
+                }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
