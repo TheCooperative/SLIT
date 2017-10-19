@@ -25,6 +25,9 @@
             Email: ${email}<br>
             role: ${role}<br>
             last logged in: ${lastLogin}<br></p>
+        
+        <a href="createModule.jsp">Click here to add new Module</a>
+        
         <form method="get" action="LogoutServlet" >
             <input type="submit" name="logout" value="logout">
         </form>

@@ -22,7 +22,7 @@ create table module(
     goals varchar(250),
     resources varchar(250),
     task varchar(250),
-    deadline datetime
+    deadline date
 );
 
 drop table module;
