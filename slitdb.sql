@@ -7,7 +7,8 @@ create table userAccount(
     email varchar(75) unique,
     pass varchar(80),
     role tinyint(1) default 0,
-    lastLogin datetime
+    lastLogin datetime,
+    resetVerification varchar(30)
     
 );
 
