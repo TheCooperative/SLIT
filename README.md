@@ -9,7 +9,6 @@ When uploading something you've wrorked on, please make sure you are up to speed
 - The **develop** branch is for joint work.
 
 
-
 ## Changing Branch
 Note that it would be wise to save your progress before changing branch.
  - git checkout (branchname)
@@ -20,6 +19,11 @@ You can ether add files manually by placing them in the folder under the currect
 - git add (filename)
 - git commit -m "Write comment"
 - git push origin (branchname)
+
+
+## Git pull
+When a update to the project is made or you're behind on the code, you can use **git pull** to get your branch up to speed. Be sure that you're on the branch you want to copy the code to, this is usually your personal brach. When that's done you have the code, but it's not publiched on your branch. It's only stored localy on your pc, so you can continue working on the code and experiment and late publish it to your branch.
+- git pull origin (branchname)
 
 
 ## Committing
