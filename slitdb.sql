@@ -27,3 +27,19 @@ create table module(
 );
 
 drop table module;
+
+create table handIn(
+	fileName varchar(80),
+	fileBlob longblob,
+	deliveryDate dateTime,
+   	feedback varchar(250),
+	notes varchar(250),
+	points tinyInt,
+	m_id int,
+	u_id int,
+    
+	constraint module_fk foreign key (m_id) references module (id),
+	constraint user_fk foreign key (u_id) references userAccount (id)
+);
+
+drop table handIn;
