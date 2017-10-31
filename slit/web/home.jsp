@@ -27,6 +27,7 @@
             last logged in: ${lastLogin}<br></p>
         
         <a href="createModule.jsp">Click here to add new Module</a>
+        <a href="fileUpload.jsp">Click here to upload new Module</a>
         
         <form method="get" action="LogoutServlet" >
             <input type="submit" name="logout" value="logout">
