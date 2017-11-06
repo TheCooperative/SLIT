@@ -33,9 +33,10 @@ public class LogoutServlet extends HttpServlet {
         conn = DBConnectionManager.getConnection();
         HttpSession session = request.getSession();
         
+        int u_id = (int) session.getAttribute("id");
         
         try {
-            String sql = "update userAccount set lastLogin = now() where id = 1";
+            String sql = "update userAccount set lastLogin = now() where id = "+ u_id;
             ps = conn.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException e) {
