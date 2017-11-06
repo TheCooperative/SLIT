@@ -25,9 +25,6 @@ create table module(
     deadline date
 );
 
-<<<<<<< HEAD
-drop table module;
-=======
 drop table module;
 
 create table handIn(
@@ -45,4 +42,3 @@ create table handIn(
 );
 
 drop table handIn;
->>>>>>> Martin
