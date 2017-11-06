@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
         }
         
         if(sucessfulLogin){
-        response.sendRedirect("index.jsp");
+            response.sendRedirect("index.jsp");
         }
     }
 
