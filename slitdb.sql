@@ -25,9 +25,6 @@ create table module(
     deadline date
 );
 
-<<<<<<< HEAD
-drop table module;
-=======
 drop table module;
 
 create table handIn(
@@ -46,6 +43,7 @@ create table handIn(
 
 
 drop table handIn;
+
 
 /*TEST DATA*/
 INSERT INTO userAccount (id, firstName, lastName, email, pass, role, lastLogin, resetVerification) 
@@ -73,4 +71,3 @@ VALUES ('MariusSinModul1', null, deliveryDate, 'Veldig bra jobbet!!', 'Dette er 
 
 INSERT INTO handIn (fileName, fileBlob, deliveryDate, feedback, notes, points, m_id, u_id) 
 VALUES ('Modul2Anders', null, deliveryDate, 'Helt OK, dette må du jobbe litt mer med', 'Min modul 2, håper dere liker.', '5', '2', '4');
->>>>>>> 05e8db0226d83168a5eeeac7ebe5a47269cd8e0f
