@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lib.ValidateModule;
 
 /**
  *
@@ -26,19 +27,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CreateModuleServlet", urlPatterns = {"/CreateModuleServlet"})
 public class CreateModuleServlet extends HttpServlet {
 
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         Connection conn;
         PreparedStatement ps;
         conn = DBConnectionManager.getConnection();
-        boolean createdModule = false;
         
         try {
             String sql = "INSERT INTO module(id, title, description, goals, resources, task, deadline) VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
-            
             String stringId = request.getParameter("moduleNumber");
             String newTitle = request.getParameter("moduleTitle");
             String newDescritption = request.getParameter("moduleDescription");
@@ -46,15 +45,21 @@ public class CreateModuleServlet extends HttpServlet {
             String newResource = request.getParameter("moduleResource");
             String newTask = request.getParameter("moduleTask");
             String stringDeadline= request.getParameter("moduleDeadline");
-            
+        
             //Converters
             int newId = Integer.parseInt(stringId);
-                        
-            if(stringDeadline.isEmpty()){
-                request.setAttribute("regError", "A deadline is required");
+        
+            if(ValidateModule.checkId(newId)){
+                //request.setAttribute("error", "Duplicate Module Number");
+                //JUST NEED TO SHOW WHATS WRONG TO THE USER
+                
+                //System.out.println("Duplicate id!!!!!!!!!!!!!");
                 RequestDispatcher rd = request.getRequestDispatcher("createModule.jsp");
                 rd.include(request, response);
+                
             } else {
+                //For testin
+                //System.out.println("New id!!!!!!!!!!!!!!!!!");
                 ps.setInt(1, newId);
                 ps.setString(2, newTitle);
                 ps.setString(3, newDescritption);
@@ -63,15 +68,11 @@ public class CreateModuleServlet extends HttpServlet {
                 ps.setString(6, newTask);
                 ps.setDate(7, Date.valueOf(stringDeadline));
                 ps.executeUpdate();
-                createdModule = true;
+                
+                response.sendRedirect("home.jsp");
             }
         } catch(SQLException e){
-            System.out.println("Driver not found "+e);
-            createdModule = false;
-        }
-        
-        if(createdModule){
-            response.sendRedirect("home.jsp");
+            System.out.println("Driver not found "+ e);
         }
     }
 }
