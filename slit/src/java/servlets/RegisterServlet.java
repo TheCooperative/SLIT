@@ -6,10 +6,12 @@ package servlets;
  * and open the template in the editor.
  */
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import db.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,7 +36,8 @@ public class RegisterServlet extends HttpServlet {
         PreparedStatement ps;
         conn = DBConnectionManager.getConnection();
         CryptPassWithMD5 crypt = new CryptPassWithMD5();
-        boolean sucessfulLogin = false;
+        boolean successfulReg = false;
+        boolean emailExists = false;
         
         
         try {
@@ -45,27 +48,36 @@ public class RegisterServlet extends HttpServlet {
         String newEmail = request.getParameter("email");
         String newPass = request.getParameter("password").toLowerCase();    // Makes the password lowercase, to avoid case sensitivity
 
-        if(newPass.length() >= 4){
-            // Use the crypt method from CryptPassWithMD5 to encrypt the password before putting it into the db.
-            String encryptedPW = crypt.cryptWithMD5(newPass);
-            ps.setString(1, newFirstName);
-            ps.setString(2, newLastName);
-            ps.setString(3, newEmail);
-            ps.setString(4, encryptedPW);
-            ps.executeUpdate();
-            sucessfulLogin = true;
-        } else {
-            request.setAttribute("regError", "Password has to be more than 4 characters");
-            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
-            rd.include(request, response);
-        }
+        
+            if(newPass.length() >= 4){
+                // Use the crypt method from CryptPassWithMD5 to encrypt the password before putting it into the db.
+                String encryptedPW = crypt.cryptWithMD5(newPass);
+                ps.setString(1, newFirstName);
+                ps.setString(2, newLastName);
+                ps.setString(3, newEmail);
+                ps.setString(4, encryptedPW);
+                ps.executeUpdate();
+                successfulReg = true;
+            } else {
+                request.setAttribute("error", "Registration was now successful.<br>Password has to be longer than 4 characters");
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.include(request, response);
+                successfulReg = false;
+            }
+        
         
         } catch(SQLException e) {
-          System.out.println("Driver not found "+e);
-          sucessfulLogin = false;
+            if(e instanceof com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException){
+                request.setAttribute("error", "Email already exists");
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.include(request, response);
+            }
+            
+            System.out.println("Driver not found "+e);
+            successfulReg = false;
         }
         
-        if(sucessfulLogin){
+        if(successfulReg){
             response.sendRedirect("index.jsp");
         }
     }
