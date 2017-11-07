@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
                 ps.executeUpdate();
                 successfulReg = true;
             } else {
-                request.setAttribute("error", "Registration was now successful.<br>Password has to be longer than 4 characters");
+                request.setAttribute("error", "Registration was not successful.<br>Password has to be longer than 4 characters");
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.include(request, response);
                 successfulReg = false;
