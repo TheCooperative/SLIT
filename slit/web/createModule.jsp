@@ -43,10 +43,17 @@
             <h2>Create a new Module</h2>
             
             <h5>Select number and title:</h5>
-            <div id="design" required>
-            <input type="number" name="moduleNumber" placeholder="Num" min="1" max="20">
-            <input type="text" name="moduleTitle" placeholder="Module Title">
+            <div id="design">
+            <input type="number" name="moduleNumber" placeholder="Num" min="1" max="20" required>
+            <input type="text" name="moduleTitle" placeholder="Module Title" required>
             </div>
+            
+            <%
+            String duplicate_error=(String)request.getAttribute("error");
+            if(duplicate_error!=null){
+                out.println("<p style='color:red;'>"+duplicate_error+"</p>");
+            }
+            %>
 
             <br>
             

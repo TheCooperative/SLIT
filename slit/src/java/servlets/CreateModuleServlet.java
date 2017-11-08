@@ -50,16 +50,11 @@ public class CreateModuleServlet extends HttpServlet {
             int newId = Integer.parseInt(stringId);
         
             if(ValidateModule.checkId(newId)){
-                //request.setAttribute("error", "Duplicate Module Number");
-                //JUST NEED TO SHOW WHATS WRONG TO THE USER
+                request.setAttribute("error", "Duplicate Module Number");
                 
-                //System.out.println("Duplicate id!!!!!!!!!!!!!");
                 RequestDispatcher rd = request.getRequestDispatcher("createModule.jsp");
                 rd.include(request, response);
-                
             } else {
-                //For testin
-                //System.out.println("New id!!!!!!!!!!!!!!!!!");
                 ps.setInt(1, newId);
                 ps.setString(2, newTitle);
                 ps.setString(3, newDescritption);
