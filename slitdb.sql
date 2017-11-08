@@ -7,8 +7,7 @@ create table userAccount(
     email varchar(75) unique,
     pass varchar(80),
     role tinyint(1) default 0,
-    lastLogin datetime,
-    resetVerification varchar(30)
+    lastLogin datetime
     
 );
 
@@ -42,7 +41,6 @@ create table handIn(
 	constraint user_fk foreign key (u_id) references userAccount (id)
 );
 
-
 drop table handIn;
 
 /*TEST DATA*/
@@ -71,3 +69,6 @@ VALUES ('MariusSinModul1', null, deliveryDate, 'Veldig bra jobbet!!', 'Dette er 
 
 INSERT INTO handIn (fileName, fileBlob, deliveryDate, feedback, notes, points, m_id, u_id) 
 VALUES ('Modul2Anders', null, deliveryDate, 'Helt OK, dette må du jobbe litt mer med', 'Min modul 2, håper dere liker.', '5', '2', '4');
+
+drop table handIn;
+

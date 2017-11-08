@@ -23,33 +23,37 @@ import lib.RandomStringGenerator;
  */
 @WebServlet(name = "SendResetPassServlet", urlPatterns = {"/SendResetPassServlet"})
 public class SendResetPassServlet extends HttpServlet {
-  
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            Connection conn;
-            PreparedStatement ps;
-            conn = DBConnectionManager.getConnection();
-            boolean sucessfullySent = false;
-            
-            String email = request.getParameter("email");
-            RandomStringGenerator rsg = new RandomStringGenerator();
-            String verificationCode = rsg.generateRandom();
-             
-                try {
-                String sql = "UPDATE userAccount set resetVerification = ? WHERE email=?";
-                ps = conn.prepareStatement(sql);
-                ps.setString(1, verificationCode);
-                ps.setString(2, email);
-                ps.executeUpdate();
-                System.out.println("check");
-                sucessfullySent = true;
-                
-            } catch (SQLException e) { 
-                    System.out.println("Driver not found "+e);
-                    sucessfullySent = false;
+        Connection conn;
+        PreparedStatement ps;
+        conn = DBConnectionManager.getConnection();
+        boolean sucessfullySent = false;
+
+        String email = request.getParameter("email");
+        RandomStringGenerator rsg = new RandomStringGenerator();
+        String verificationCode = rsg.generateRandom();
+
+        try {
+            String sql = "UPDATE userAccount set resetVerification = ? WHERE email=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, verificationCode);
+            ps.setString(2, email);
+            ps.executeUpdate();
+            System.out.println("check");
+            sucessfullySent = true;
+
+        } catch (SQLException e) {
+            System.out.println("Driver not found " + e);
+            sucessfullySent = false;
         }
-                if(sucessfullySent){
-                    response.sendRedirect("index.jsp");
-                }
+        
+        if (sucessfullySent) {
+            response.sendRedirect("index.jsp");
+        } else {
+            // Add an error message and redirect the user under this line.
+            response.sendRedirect("index.jsp");
+        }
     }
 }
