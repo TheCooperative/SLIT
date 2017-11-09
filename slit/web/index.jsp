@@ -10,7 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SLIT</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        
         <script>
             $(document).ready(function () {
 
@@ -39,6 +41,7 @@
             html, body {
                 height: 100%;
                 min-height: 100%;
+                font-family: 'Roboto Condensed', sans-serif;
             }
 
             body{
@@ -48,6 +51,9 @@
 
             a {
                 text-decoration: none;
+                color: #3498db;
+            }
+            a:hover, a:visited {
                 color: #3498db;
             }
 
@@ -66,9 +72,9 @@
             .login_header {
                 width: 100%;
                 height: 90px;
-                background-color: #3498db;
+                background-color: #5C80BC;
                 text-align: center;
-                color: #ffffff;
+                color: #F9F8F8;
             }
 
             .login_header h1 {
@@ -86,6 +92,9 @@
                 margin: 5px 0 10px 0;
                 padding: 5px 10px 5px 10px;
                 color: #ffffff;
+            }
+            input[type="submit"]:hover {
+                box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
             }
             
             h3 {
