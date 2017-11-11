@@ -6,31 +6,21 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-       
-    </head>
-    <body> 
+<jsp:include page="includes/header.jsp"></jsp:include>
         <% 
-            // If the user is notsigned in, redirect the user to index.jsp
+            // If the user is not signed in, redirect the user to index.jsp
             if(session.getAttribute("id")==null){
                 response.sendRedirect("index.jsp");
             }
         %>
-        
         <h1>Hello ${firstName} ${lastName}</h1><br>
-        <p>UserID: ${id}<br>
+            User ID: ${id}<br>
             Email: ${email}<br>
             role: ${role}<br>
-            last logged in: ${lastLogin}<br></p>
+            last logged in: ${lastLogin}<br>
         
         <a href="createModule.jsp">Click here to add new Module</a>
         <a href="fileUpload.jsp">Click here to upload new Module</a>
         
-        <form method="get" action="LogoutServlet" >
-            <input type="submit" name="logout" value="logout">
-        </form>
     </body>
 </html>
