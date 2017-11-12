@@ -12,26 +12,7 @@
         <title>SLIT</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        
-        <script>
-            $(document).ready(function () {
-
-                //On click signup hide login and show registration form
-                $("#signup").click(function () {
-                    $("#first").slideUp("slow", function () {
-                        $("#second").slideDown("slow");
-                    });
-                });
-
-                //On click signin hide login and show login form
-                $("#signin").click(function () {
-                    $("#second").slideUp("slow", function () {
-                        $("#first").slideDown("slow");
-                    });
-                });
-
-            });
-        </script>
+        <script src="js/slide.js"></script>
 
         <style>
             form {
