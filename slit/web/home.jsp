@@ -62,21 +62,17 @@
 </div>
 <div class="section">
     <div class="row">
-        
+        <div class="hellomsg"><h3>Module Information</h3></div>
         <%
             try {
                 String sql = "select * from module";
                 ps = conn.prepareStatement(sql);
 
                 ResultSet rs2 = ps.executeQuery(sql);
-                boolean empty = true;
         %>
         <%
             while (rs2.next()) {
-                if(empty = true){
         %>
-            <div class="hellomsg"><h3>Module Information</h3></div>
-        <% empty = false; } %>
         <div class="mod_inf">
             <table class="modules">
                 <tr>
