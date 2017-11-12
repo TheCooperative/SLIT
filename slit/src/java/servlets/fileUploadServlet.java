@@ -7,7 +7,6 @@ package servlets;
 
 import db.DBConnectionManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
@@ -45,33 +44,31 @@ public class fileUploadServlet extends HttpServlet {
         // Connect to the database
         Connection conn;
         conn = DBConnectionManager.getConnection();
+        HttpSession session = request.getSession(true);
         
         String fileName = request.getParameter("fileName");
+        String m_id = request.getParameter("moduleId");
+        int u_id = (Integer) session.getAttribute("id");
+        
         
         String sql = "INSERT INTO handIn(fileName, fileBlob, deliveryDate, u_id, m_id) values (?, ?, now(), ?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         
-        if(inputStream != null){
-            HttpSession session = request.getSession(true);
+        if(inputStream != null){        
             //fetches input stream of the upload file for the blob column
             ps.setString(1, fileName);
             ps.setBlob(2, inputStream);
-            
-            int u_id = (Integer) session.getAttribute("id");
             ps.setInt(3, u_id);
-            //<--sett inn id mellom her-->
-            //Den heter m_id oppe i sql queryen der.
-            //ps.setInt(4, m_id);
-            //<-------------------------->
+            ps.setString(4, m_id);         
             ps.executeUpdate();
         } 
         
-        response.sendRedirect("fileUpload.jsp");
+        response.sendRedirect("home.jsp");
         //Legg til en melding til brukeren om opplastning fullført her!
         
         } catch(SQLException e){
             System.out.println("Error:"+e);
-            response.sendRedirect("fileUpload.jsp");
+            response.sendRedirect("home.jsp");
             
             //Legg til en feilmelding til brukeren her!
         }
