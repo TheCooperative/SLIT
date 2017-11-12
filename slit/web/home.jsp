@@ -26,8 +26,9 @@
             role: ${role}<br>
             last logged in: ${lastLogin}<br></p>
         
-        <a href="createModule.jsp">Click here to add new Module</a>
-        <a href="fileUpload.jsp">Click here to upload new Module</a>
+        <a href="createModule.jsp">Click here to add new Module</a><br>
+        <a href="fileUpload.jsp">Click here to upload new Module</a><br>
+        <a href="showAllModules.jsp">Click here to show all modules</a><br>
         
         <form method="get" action="LogoutServlet" >
             <input type="submit" name="logout" value="logout">
