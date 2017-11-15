@@ -1,0 +1,289 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 9, 2017, 4:29:04 PM
+    Author     : Martin
+*/
+/*--TOP NAVIGATION BAR--*/
+html {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.topNav {
+    background-color: #5C80BC;
+    overflow: hidden;
+    height: 75px;
+}
+
+#slitLogo {
+    color: #F9F8F8;
+    font-size: 195%;
+    float: left;
+    padding: 25px 0 0 0;
+}
+#slitLogo h3 {
+    margin: 0;
+}
+
+#navLinks {
+    position: relative;
+    float: right;
+    display: inline-block;
+    margin: 0;
+    padding: 35px 0 0 0;
+}
+
+#navLinks a {
+    text-decoration: none;
+    color: #F9F8F8;
+    font-size: 125%;
+    padding-top: 150px;
+    margin-left: 50px;
+    margin-right: 0;
+    transition: .3s;
+}
+
+#navLinks a:hover{
+    color: #a9b9c9;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+#navLinks input[type="submit"]{
+    font-family: 'Roboto Condensed', sans-serif;
+    border: 2px solid #ef7b86;
+    color: #ef7b86;
+    font-size: 107%;
+    background-color: rgba(219, 84, 97, 0);;
+    border-radius: 5px;
+    margin-left: 50px;
+    transition: 0.3s;
+    height: 30px;
+    width: 82px;
+}
+
+#navLinks input[type="submit"]:hover {
+    background-color: #DB5461;
+    color: #F9F8F8;
+    font-size: 108%;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+#navLinks i {
+    font-size: 100%;
+    padding: 0;
+    margin-right: 3px;
+}
+
+#navLinks .fa-envelope {
+    font-size: 96%;
+}
+
+#navLinks form {
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+
+@media only screen and (max-width: 1180px) {
+    #slitLogo{
+        padding-left: 35px;
+    }
+    #navLinks input[type="submit"]{
+        margin-left: 10px;
+    }
+    #navLinks{
+        padding-right: 35px;
+    }
+}
+/*--END TOP NAVIGATION BAR--*/
+
+/*--BEGINNING HOME PAGE--*/
+.hellomsg {
+    padding-top: 75px;
+    text-align: center;
+    color: #b4b4b4;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.hellomsg h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.hellomsg:after {
+    margin: 0 auto;
+    content: '';
+    width: 300px;
+    height: 1px;
+    padding: 0;
+    background-color: #d6d6d6;
+}
+.box {
+    margin: 0 auto;
+    margin-top: 50px;
+    border: none;
+    border-radius: 15px;
+    width: 350px;
+    height: 150px;
+    background-color: #F9F8F8;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding-top: 25px;
+    color: #1d1d1d;
+}
+
+.box h3{
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 10px;
+}
+
+.box input[type="text"]{
+    padding-left: 5px;
+    height: 25px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+
+select {
+    border: 1px solid #F9F8F8;
+    box-shadow: 0 0 1px rgba(0,0,0,0.25);
+    width: 80px;
+    height: 25px;
+    border-radius: 3px;
+}
+
+select:focus {
+    outline: none;
+}
+.box input[type="file"]{
+    margin-top: 15px;
+}
+.box input[type="file"]::-webkit-file-upload-button{
+    border: none;
+    border-radius: 3px;
+    width: 90px;
+    height: 25px;
+    color: #F9F8F8;
+    background-color: #5C80BC;
+    box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+
+.box input[type="file"]::-webkit-file-upload-button:hover{
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
+    background-color: #20AD75;
+}
+
+.box input[type="submit"]{
+    width: 350px;
+    height: 50px;
+    margin: 0;
+    margin-top: 10px;
+    border: none;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #5C80BC;
+    color: #F9F8F8;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.box input[type="submit"]:hover {
+    background-color: #20AD75;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.15);
+}
+
+.mod_inf{
+    text-align: center;
+    line-height: 35px;
+    width: 70%;
+    height: 35px;
+    background-color: #F8F9F9;
+    box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    margin: 0 auto;
+}
+
+.mod_inf:hover {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15); 
+    padding-left: 1px;
+    padding-right: 1px;
+    background-color: #f0f0f0;
+}
+
+.modules {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.modules td {
+    text-align: left;
+    color: #1d1d1d;
+    padding-left: 25px;
+}
+
+.mod_desc {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    display: none;
+    width: 70%;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    line-height: 25px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    text-align: center;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.mod_desc h1{
+    padding: 0;
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 150%;
+    color: #1d1d1d;
+}
+
+.mod_desc h2{
+    padding: 0;
+    margin: 0;
+    margin-bottom: 35px;
+    font-size: 90%;
+    color: #1d1d1d;
+}
+
+.mod_desc label {
+    color: #b4b4b4;
+    text-shadow: 0 0 0 rgba(0,0,0,0.15);
+}
+
+.mod_desc p {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 35px;
+}
+
+/*--END HOME PAGE--*/
+/*--REUSEABLES--*/
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.section{
+    margin-top: 50px;
+}
+/*--END REUSEABLES--*/
