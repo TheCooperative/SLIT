@@ -41,4 +41,4 @@ create table handIn(
 	constraint user_fk foreign key (u_id) references userAccount (id)
 );
 
-drop table handIn
+drop table handIn;

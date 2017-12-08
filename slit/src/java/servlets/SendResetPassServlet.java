@@ -24,6 +24,7 @@ import lib.RandomStringGenerator;
 @WebServlet(name = "SendResetPassServlet", urlPatterns = {"/SendResetPassServlet"})
 public class SendResetPassServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn;

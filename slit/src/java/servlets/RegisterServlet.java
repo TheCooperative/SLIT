@@ -6,12 +6,10 @@ package servlets;
  * and open the template in the editor.
  */
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import db.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +27,7 @@ import lib.CryptPassWithMD5;
 public class RegisterServlet extends HttpServlet {
 
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -37,7 +36,6 @@ public class RegisterServlet extends HttpServlet {
         conn = DBConnectionManager.getConnection();
         CryptPassWithMD5 crypt = new CryptPassWithMD5();
         boolean successfulReg = false;
-        boolean emailExists = false;
         
         
         try {
