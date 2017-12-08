@@ -22,24 +22,10 @@
 <a href="createModule.jsp">Click here to add new Module</a>
 <a href="fileUpload.jsp">Click here to upload new Module</a>
 <!------------------------------------------>
-<div class="row hellomsg">
-    <span>
-        <h1>Hello ${firstName} ${lastName}</h1><br>
-<<<<<<< HEAD
-        <p>UserID: ${id}<br>
-            Email: ${email}<br>
-            role: ${role}<br>
-            last logged in: ${lastLogin}<br></p>
-        
-        <a href="createModule.jsp">Click here to add new Module</a><br>
-        <a href="fileUpload.jsp">Click here to upload new Module</a><br>
-        <a href="showAllModules.jsp">Click here to show all modules</a><br>
-        
-        <form method="get" action="LogoutServlet" >
-            <input type="submit" name="logout" value="logout">
-=======
+
+
     </span>
-</div>
+
 <%
     Connection conn;
     PreparedStatement ps;
@@ -70,7 +56,6 @@
             <input type="text" name="fileName" placeholder="Enter your title"><br>
             <input type="file" name="fileBlob" id="fileBlob">
             <input type="submit" value="upload">
->>>>>>> 936f637a083c3c5ca28679a05fd66b40c4fbaac1
         </form>
     </div>
 </div>
