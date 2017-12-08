@@ -39,6 +39,15 @@
     </head>
     
     <body><center>
+        <%
+            // If the user is already signed in, redirect the user to index.jsp
+            // Else if the user is a student return user to home, as students dont have access
+            if (session.getAttribute("id") == null) {
+                response.sendRedirect("index.jsp");
+            } else if((String) session.getAttribute("role") == "Student"){
+                response.sendRedirect("home.jsp");
+            }
+        %>
         <form method="post" action="CreateModuleServlet">
             <h2>Create a new Module</h2>
             

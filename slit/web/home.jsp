@@ -21,6 +21,7 @@
 <!--Dette skal bort etterhvert-->
 <a href="createModule.jsp">Click here to add new Module</a>
 <a href="fileUpload.jsp">Click here to upload new Module</a>
+<a href="classOverview.jsp">Click here to see the class overview</a>
 <!------------------------------------------>
 <div class="row hellomsg">
     <span>
