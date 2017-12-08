@@ -18,13 +18,19 @@
     if (session.getAttribute("id") == null) {
         response.sendRedirect("index.jsp");
     }
+    if ((String) session.getAttribute("role") == "Teacher"){
+        response.sendRedirect("teacherHome.jsp");
+    }
 %>
 
 
 <!--Dette skal bort etterhvert-->
+<a href="approveHandin.jsp">Click here to approve a hand-in</a>
+<a href="classOverview.jsp">Click here to see the class overview</a>
 <a href="createModule.jsp">Click here to add new Module</a>
 <a href="fileUpload.jsp">Click here to upload new Module</a>
-<a href="classOverview.jsp">Click here to see the class overview</a>
+<a href="showAllModules.jsp">Click here to show all modules</a>
+<a href="teacherHome.jsp">Click here to go to Teacher home page</a>
 
 
 <div class="row hellomsg">
@@ -35,16 +41,9 @@
             role: ${role}<br>
             last logged in: ${lastLogin}<br>
         </p>
-        
-        <a href="createModule.jsp">Click here to add new Module</a><br>
-        <a href="fileUpload.jsp">Click here to upload new Module</a><br>
-        <a href="showAllModules.jsp">Click here to show all modules</a><br>
-        
-        <form method="get" action="LogoutServlet" >
-            <input type="submit" name="logout" value="logout">
     </span>
 </div>
-            
+              
 <%
     Connection conn;
     PreparedStatement ps;
@@ -101,9 +100,9 @@
                 </tr>
             </table>
         </div>
+                
         <div class="mod_desc">
-            <h1>Module <%= rs2.getString("id")%></h1>
-            <h2><%= rs2.getString("title")%></h2>
+            <h1>Module <%= rs2.getString("id")%> - <%= rs2.getString("title")%></h1>
             <label for="mod_desc">Description</label>
             <p class="mod_des"><%= rs2.getString("description")%></p>
             <label for="mod_goals">Learning goal</label>
