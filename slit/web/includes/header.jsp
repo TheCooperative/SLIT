@@ -22,8 +22,8 @@
                     <h3>SLIT</h3>
                 </div>
                 <div id="navLinks">
-                    <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                    <a href="home.jsp"><i class="fa fa-home" aria-hidden="false"></i> Home</a>
+                    <a href="profile.jsp"><i class="fa fa-user" aria-hidden="false"></i> Profile</a>
                     <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> Messages</a>
                     <form method="POST" action="LogoutServlet">
                     <input type="submit" value="Logout">

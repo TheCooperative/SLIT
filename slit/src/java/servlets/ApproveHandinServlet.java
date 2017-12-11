@@ -15,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lib.CryptPassWithMD5;
 
 /**
  *
@@ -24,7 +23,6 @@ import lib.CryptPassWithMD5;
 @WebServlet(name = "ApproveHandinServlet", urlPatterns = {"/ApproveHandinServlet"})
 public class ApproveHandinServlet extends HttpServlet {
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,9 +30,6 @@ public class ApproveHandinServlet extends HttpServlet {
         Connection conn;
         PreparedStatement ps;
         conn = DBConnectionManager.getConnection();
-        CryptPassWithMD5 crypt = new CryptPassWithMD5();
-        
-        
         
         try {
             String sql ="UPDATE handin set feedback = ?, notes = ?, points = ? where m_id = ? and u_id = ?";
@@ -47,31 +42,15 @@ public class ApproveHandinServlet extends HttpServlet {
             String Points = request.getParameter ("points");
             int newPoints = Integer.valueOf(Points);
             
-            
-            
                 ps.setString(1, newFeedback);
                 ps.setString(2, newNotes);
                 ps.setInt(3, newPoints);
                 ps.setString(4, m_id);
                 ps.setString(5, u_id);
-                ps.executeUpdate();
-                
-                        
-            }
-        
-        
-                
+                ps.executeUpdate();        
+        }   
         catch (SQLException e){
-            
             System.out.println("Driver not found "+e);
-            
-            
         }
-        
-
-
-    }
-    
-    
+    } 
 }
-

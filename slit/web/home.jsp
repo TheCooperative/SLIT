@@ -8,11 +8,11 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="db.DBConnectionManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <jsp:include page="includes/header.jsp"></jsp:include>
+    
 <%
     // If the user is not signed in, redirect the user to index.jsp
     if (session.getAttribute("id") == null) {
@@ -26,12 +26,6 @@
 
 <!--Dette skal bort etterhvert-->
 <a href="approveHandin.jsp">Click here to approve a hand-in</a>
-<a href="classOverview.jsp">Click here to see the class overview</a>
-<a href="createModule.jsp">Click here to add new Module</a>
-<a href="fileUpload.jsp">Click here to upload new Module</a>
-<a href="profile.jsp">Click here to go to Profile page</a>
-<a href="showAllModules.jsp">Click here to show all modules</a>
-<a href="teacherHome.jsp">Click here to go to Teacher home page</a>
 
 
 <div class="row hellomsg">
@@ -58,7 +52,7 @@
 
 <div class="row">
     <div class="box">
-        <h3>Upload new Module</h3>
+        <h3>Hand in a Module</h3>
         <form method="post" action="fileUpload" enctype="multipart/form-data">
             <select name="moduleId">
 <%

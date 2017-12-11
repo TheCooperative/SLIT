@@ -4,6 +4,7 @@
     Author     : Christoffer
 --%>
 
+<%@page import="lib.ClassOverview"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -18,15 +19,39 @@
     Connection conn;
     PreparedStatement ps;
     conn = DBConnectionManager.getConnection();
+    
+    int temp = (Integer) session.getAttribute("id");
 %>
         <center>
             <h1>Profile - ${firstName} ${lastName}</h1>
+            
+            <table border="1">
+                <tr>
+                    <td> Modul: 1 </td>
+                    <td> Modul: 2 </td>
+                    <td> Modul: 3 </td>
+                    <td> Modul: 4 </td>
+                    <td> Modul: 5 </td>
+                </tr>
+                
+                <tr>
+<%
+            //Gets the points on each module
+            for(int stepper = 0; stepper <= 4; stepper ++){
+                int modules = ClassOverview.getModulePoints(temp, stepper+1);
+%>
+                    <td><%= modules %></td>
+<%
+            }
+%>
+                </tr>
+            </table>
+            
             <div class="section">
                 <div class="row">
                     <div class="hellomsg"><h3>Hand-in Information</h3></div>
 <%
     try {
-        int temp = (Integer) session.getAttribute("id");
         String sql = "select u_id, m_id, points, feedback, notes, fileName, deliveryDate, title from module inner join handIn on module.id = handIn.m_id where u_id = " + temp;
         ps = conn.prepareStatement(sql);
         

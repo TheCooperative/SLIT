@@ -11,11 +11,8 @@ and open the template in the editor.
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="db.DBConnectionManager"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
     <head>
         <title>Approve Handin</title>
         <meta charset="UTF-8">

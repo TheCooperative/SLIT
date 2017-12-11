@@ -22,25 +22,12 @@ import lib.ValidateUser;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-
     CryptPassWithMD5 crypt = new CryptPassWithMD5();
-    
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String firstName = "";
-        String lastName = "";
-        int id;
-        int role;
+
         
         String email = request.getParameter("email");
         String pass = request.getParameter("password").toLowerCase(); // Makes the password lowercase to avoid case sensitivity.
