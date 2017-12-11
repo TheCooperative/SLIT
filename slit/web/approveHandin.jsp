@@ -60,13 +60,35 @@ and open the template in the editor.
 %>
                     </select>
 
+                    <%
+               
+                conn = DBConnectionManager.getConnection();
+                try {
+                    String sql = "select id, firstName, lastName from useraccount where role = 0";
+                    ps = conn.prepareStatement(sql);
+
+                    ResultSet rs = ps.executeQuery(sql);
+%> 
+
+        <div class="row">
+        <div class="box">
             <h2>Choose Student</h2>
-            <select name="userId">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-            </select>
-        
+                <form method="post" action="fileUpload" enctype="multipart/form-data">
+                    <select name="Student">
+<%
+                    while (rs.next()) {
+%>
+        <option value=<%= rs.getInt("id")%>> <%= rs.getString("firstName")%> <%= rs.getString("lastName")%> </option> 
+<%
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+%>
+                    </select>
+            
+      
             <h2>Choose Score</h2>
             <select name = "points">
                 <option value ="1">1</option>
