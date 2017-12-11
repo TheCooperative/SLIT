@@ -29,6 +29,7 @@
 <a href="classOverview.jsp">Click here to see the class overview</a>
 <a href="createModule.jsp">Click here to add new Module</a>
 <a href="fileUpload.jsp">Click here to upload new Module</a>
+<a href="profile.jsp">Click here to go to Profile page</a>
 <a href="showAllModules.jsp">Click here to show all modules</a>
 <a href="teacherHome.jsp">Click here to go to Teacher home page</a>
 

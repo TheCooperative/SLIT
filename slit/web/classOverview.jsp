@@ -24,11 +24,11 @@
         <table border="1">
             <tr>
                 <td>Student:</td>
-                <td>Modul: 1</td>
-                <td>Modul: 2</td>
-                <td>Modul: 3</td>
-                <td>Modul: 4</td>
-                <td>Modul: 5</td>
+                <td> Modul: 1 </td>
+                <td> Modul: 2 </td>
+                <td> Modul: 3 </td>
+                <td> Modul: 4 </td>
+                <td> Modul: 5 </td>
             </tr>
 <%
     try{
