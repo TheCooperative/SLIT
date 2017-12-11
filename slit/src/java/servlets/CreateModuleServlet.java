@@ -1,11 +1,5 @@
 package servlets;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import db.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,16 +15,31 @@ import javax.servlet.http.HttpServletResponse;
 import lib.ValidateModule;
 
 /**
- *
+ * Whith the help of the DB
+ * connentor we are able to execute insertions and statments from
+ * the servlets. This servlet is responisble for transfering data from the UI
+ * too the database and creating a new Module with that data. 
+ * 
  * @author Christoffer
  */
 @WebServlet(name = "CreateModuleServlet", urlPatterns = {"/CreateModuleServlet"})
 public class CreateModuleServlet extends HttpServlet {
+    
+    /**
+     * Processes requests for HTTP <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
+        //MySQL Workbench Database Conector
         Connection conn;
         PreparedStatement ps;
         conn = DBConnectionManager.getConnection();
@@ -38,6 +47,8 @@ public class CreateModuleServlet extends HttpServlet {
         try {
             String sql = "INSERT INTO module(id, title, description, goals, resources, task, deadline) VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
+            
+            //Pulling data from the input fields
             String stringId = request.getParameter("moduleNumber");
             String newTitle = request.getParameter("moduleTitle");
             String newDescritption = request.getParameter("moduleDescription");
@@ -48,7 +59,7 @@ public class CreateModuleServlet extends HttpServlet {
         
             //Converters
             int newId = Integer.parseInt(stringId);
-        
+                  
             if(ValidateModule.checkId(newId)){
                 request.setAttribute("error", "Duplicate Module Number");
                 

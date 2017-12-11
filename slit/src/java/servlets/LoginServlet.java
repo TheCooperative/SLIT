@@ -26,8 +26,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+        throws ServletException, IOException {
         
         String email = request.getParameter("email");
         String pass = request.getParameter("password").toLowerCase(); // Makes the password lowercase to avoid case sensitivity.
@@ -41,9 +40,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("lastName", ValidateUser.lastName);
             session.setAttribute("email", email);
             session.setAttribute("lastLogin", ValidateUser.lastLoginTime);
+            
             // If the user role is equal to 0 the user is a Student. If it's a higher number the user is a Teacher.
             if(ValidateUser.role == 0){
-            session.setAttribute("role", "Student");
+                session.setAttribute("role", "Student");
             } else {
                 session.setAttribute("role", "Teacher");
             }
@@ -55,7 +55,5 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.include(request, response);
         }
-        
     }
-
 }

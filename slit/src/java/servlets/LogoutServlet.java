@@ -26,7 +26,8 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
+        
         Connection conn;
         PreparedStatement ps;
         conn = DBConnectionManager.getConnection();
@@ -50,5 +51,4 @@ public class LogoutServlet extends HttpServlet {
         session.invalidate();
         response.sendRedirect("index.jsp");
     }
-
 }
