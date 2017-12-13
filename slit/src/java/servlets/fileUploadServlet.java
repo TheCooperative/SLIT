@@ -28,8 +28,9 @@ import javax.servlet.http.Part;
 @MultipartConfig(maxFileSize = 10485760)
 public class fileUploadServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
             
         InputStream inputStream = null;
 
@@ -41,30 +42,29 @@ public class fileUploadServlet extends HttpServlet {
         }
 
         try {
-        // Connect to the database
-        Connection conn;
-        conn = DBConnectionManager.getConnection();
-        HttpSession session = request.getSession(true);
+            // Connect to the database
+            Connection conn;
+            conn = DBConnectionManager.getConnection();
+            HttpSession session = request.getSession(true);
+
+            String fileName = request.getParameter("fileName");
+            String m_id = request.getParameter("moduleId");
+            int u_id = (Integer) session.getAttribute("id");
         
-        String fileName = request.getParameter("fileName");
-        String m_id = request.getParameter("moduleId");
-        int u_id = (Integer) session.getAttribute("id");
+            String sql = "INSERT INTO handIn(fileName, fileBlob, deliveryDate, u_id, m_id) values (?, ?, now(), ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
         
-        
-        String sql = "INSERT INTO handIn(fileName, fileBlob, deliveryDate, u_id, m_id) values (?, ?, now(), ?, ?)";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        
-        if(inputStream != null){        
-            //fetches input stream of the upload file for the blob column
-            ps.setString(1, fileName);
-            ps.setBlob(2, inputStream);
-            ps.setInt(3, u_id);
-            ps.setString(4, m_id);         
-            ps.executeUpdate();
-        } 
-        
-        response.sendRedirect("home.jsp");
-        //Legg til en melding til brukeren om opplastning fullført her!
+            if(inputStream != null){        
+                //fetches input stream of the upload file for the blob column
+                ps.setString(1, fileName);
+                ps.setBlob(2, inputStream);
+                ps.setInt(3, u_id);
+                ps.setString(4, m_id);         
+                ps.executeUpdate();
+            } 
+
+            response.sendRedirect("home.jsp");
+            //Legg til en melding til brukeren om opplastning fullført her!
         
         } catch(SQLException e){
             System.out.println("Error:"+e);

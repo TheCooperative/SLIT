@@ -6,12 +6,10 @@ package servlets;
  * and open the template in the editor.
  */
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import db.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,28 +25,26 @@ import lib.CryptPassWithMD5;
  */
 @WebServlet(urlPatterns = {"/RegisterServlet"})
 public class RegisterServlet extends HttpServlet {
-
-
+    
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         
         Connection conn;
         PreparedStatement ps;
         conn = DBConnectionManager.getConnection();
+        
         CryptPassWithMD5 crypt = new CryptPassWithMD5();
         boolean successfulReg = false;
-        boolean emailExists = false;
-        
         
         try {
-        String sql = "INSERT INTO userAccount(firstName, lastName, email, pass) VALUES (?, ?, ?, ?)";
-        ps = conn.prepareStatement(sql);
-        String newFirstName = request.getParameter("firstName");
-        String newLastName = request.getParameter("lastName");
-        String newEmail = request.getParameter("email");
-        String newPass = request.getParameter("password").toLowerCase();    // Makes the password lowercase, to avoid case sensitivity
+            String sql = "INSERT INTO userAccount(firstName, lastName, email, pass) VALUES (?, ?, ?, ?)";
+            ps = conn.prepareStatement(sql);
+            String newFirstName = request.getParameter("firstName");
+            String newLastName = request.getParameter("lastName");
+            String newEmail = request.getParameter("email");
+            String newPass = request.getParameter("password").toLowerCase();    // Makes the password lowercase, to avoid case sensitivity
 
-        
             if(newPass.length() >= 4){
                 // Use the crypt method from CryptPassWithMD5 to encrypt the password before putting it into the db.
                 String encryptedPW = crypt.cryptWithMD5(newPass);
@@ -64,8 +60,6 @@ public class RegisterServlet extends HttpServlet {
                 rd.include(request, response);
                 successfulReg = false;
             }
-        
-        
         } catch(SQLException e) {
             if(e instanceof com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException){
                 request.setAttribute("error", "Email already exists");
@@ -81,5 +75,4 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("index.jsp");
         }
     }
-
 }

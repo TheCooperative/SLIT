@@ -24,6 +24,5 @@ public class RandomStringGenerator {
             verificationString = sb.toString();
         }
         return verificationString;
-
     }
 }

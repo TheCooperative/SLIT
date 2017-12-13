@@ -8,22 +8,45 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="db.DBConnectionManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <jsp:include page="includes/header.jsp"></jsp:include>
+    
 <%
     // If the user is not signed in, redirect the user to index.jsp
     if (session.getAttribute("id") == null) {
         response.sendRedirect("index.jsp");
     }
+    if ((String) session.getAttribute("role") == "Teacher"){
+        response.sendRedirect("teacherHome.jsp");
+    }
 %>
+
+
 <!--Dette skal bort etterhvert-->
+<<<<<<< HEAD
 <a href="createModule.jsp">Click here to add new Module</a>
 <a href="fileUpload.jsp">Click here to upload new Module</a>
 <!------------------------------------------>
 
 
+=======
+<a href="approveHandin.jsp">Click here to approve a hand-in</a>
+
+
+<div class="row hellomsg">
+    <span>
+        <h1>Hello ${firstName} ${lastName}</h1><br>
+        <p>UserID: ${id}<br>
+            Email: ${email}<br>
+            role: ${role}<br>
+            last logged in: ${lastLogin}<br>
+        </p>
+    </span>
+</div>
+              
+>>>>>>> f71e70163649360718c8e8aafe9ff4b26f2de240
 <%
     Connection conn;
     PreparedStatement ps;
@@ -34,42 +57,43 @@
 
         ResultSet rs = ps.executeQuery(sql);
 %> 
+
 <div class="row">
     <div class="box">
-        <h3>Upload new Module</h3>
+        <h3>Hand in a Module</h3>
         <form method="post" action="fileUpload" enctype="multipart/form-data">
             <select name="moduleId">
-                <%
-                    while (rs.next()) {
-                %>
+<%
+        while (rs.next()) {
+%>
                 <option value=<%= rs.getString("id")%>>Module <%= rs.getString("id")%></option>
-                <%
-                        }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                %>
+<%
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
             </select>
+            
             <input type="text" name="fileName" placeholder="Enter your title"><br>
             <input type="file" name="fileBlob" id="fileBlob">
             <input type="submit" value="upload">
         </form>
     </div>
 </div>
+            
 <div class="section">
     <div class="row">
         <div class="hellomsg"><h3>Module Information</h3></div>
-        <%
-            try {
-                String sql = "select * from module";
-                ps = conn.prepareStatement(sql);
+<%
+    try {
+        String sql = "select * from module";
+        ps = conn.prepareStatement(sql);
 
-                ResultSet rs2 = ps.executeQuery(sql);
-        %>
-        <%
-            while (rs2.next()) {
-        %>
+        ResultSet rs2 = ps.executeQuery(sql);
+
+        while (rs2.next()) {
+%>
         <div class="mod_inf">
             <table class="modules">
                 <tr>
@@ -79,9 +103,9 @@
                 </tr>
             </table>
         </div>
+                
         <div class="mod_desc">
-            <h1>Module <%= rs2.getString("id")%></h1>
-            <h2><%= rs2.getString("title")%></h2>
+            <h1>Module <%= rs2.getString("id")%> - <%= rs2.getString("title")%></h1>
             <label for="mod_desc">Description</label>
             <p class="mod_des"><%= rs2.getString("description")%></p>
             <label for="mod_goals">Learning goal</label>
@@ -93,13 +117,13 @@
             <label for="mod_deadline">Deadline</label>
             <p class="mod_deadline">Deadline is due: <%= rs2.getString("deadline")%></p>
         </div>
-        <%
-                }
-                conn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        %>
+<%
+        }
+        conn.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
     </div>
 </div>
 </body>

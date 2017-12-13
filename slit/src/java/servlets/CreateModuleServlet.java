@@ -1,11 +1,5 @@
 package servlets;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import db.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,27 +12,43 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lib.ValidateModule;
 
 /**
- *
+ * Whith the help of the DB
+ * connentor we are able to execute insertions and statments from
+ * the servlets. This servlet is responisble for transfering data from the UI
+ * too the database and creating a new Module with that data. 
+ * 
  * @author Christoffer
  */
 @WebServlet(name = "CreateModuleServlet", urlPatterns = {"/CreateModuleServlet"})
 public class CreateModuleServlet extends HttpServlet {
-
     
+    /**
+     * Processes requests for HTTP <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         
+        //MySQL Workbench Database Conector
         Connection conn;
         PreparedStatement ps;
         conn = DBConnectionManager.getConnection();
-        boolean createdModule = false;
         
         try {
             String sql = "INSERT INTO module(id, title, description, goals, resources, task, deadline) VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             
+            //Pulling data from the input fields
             String stringId = request.getParameter("moduleNumber");
             String newTitle = request.getParameter("moduleTitle");
             String newDescritption = request.getParameter("moduleDescription");
@@ -46,12 +56,13 @@ public class CreateModuleServlet extends HttpServlet {
             String newResource = request.getParameter("moduleResource");
             String newTask = request.getParameter("moduleTask");
             String stringDeadline= request.getParameter("moduleDeadline");
-            
+        
             //Converters
             int newId = Integer.parseInt(stringId);
-                        
-            if(stringDeadline.isEmpty()){
-                request.setAttribute("regError", "A deadline is required");
+                  
+            if(ValidateModule.checkId(newId)){
+                request.setAttribute("error", "Duplicate Module Number");
+                
                 RequestDispatcher rd = request.getRequestDispatcher("createModule.jsp");
                 rd.include(request, response);
             } else {
@@ -63,15 +74,11 @@ public class CreateModuleServlet extends HttpServlet {
                 ps.setString(6, newTask);
                 ps.setDate(7, Date.valueOf(stringDeadline));
                 ps.executeUpdate();
-                createdModule = true;
+                
+                response.sendRedirect("home.jsp");
             }
         } catch(SQLException e){
-            System.out.println("Driver not found "+e);
-            createdModule = false;
-        }
-        
-        if(createdModule){
-            response.sendRedirect("home.jsp");
+            System.out.println("Driver not found "+ e);
         }
     }
 }
