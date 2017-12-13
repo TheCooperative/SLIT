@@ -7,7 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ *  This class holds a method which creates a sql query
+ *  based on the parameters int user and int module.
+ *  With this information the points from one hand-in
+ *  is returned.
+ * 
  * @author Christoffer
  */
 public class ClassOverview {

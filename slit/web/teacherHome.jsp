@@ -15,6 +15,9 @@
 <!DOCTYPE html>
 
 <jsp:include page="includes/header.jsp"></jsp:include>
+    
+<a href="approveHandin.jsp">Click here to approve a hand-in</a>
+    
 <%
     // If the user is not signed in, redirect the user to index.jsp
     if (session.getAttribute("id") == null) {

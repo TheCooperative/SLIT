@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lib;
 
 import java.security.MessageDigest;
@@ -32,9 +27,6 @@ public class CryptPassWithMD5 {
     } catch (NoSuchAlgorithmException ex) {
         Logger.getLogger(CryptPassWithMD5.class.getName()).log(Level.SEVERE, null, ex);
     }
-        return null;
-
-
+    return null;
    }
 }
-

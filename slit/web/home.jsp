@@ -23,11 +23,6 @@
     }
 %>
 
-
-<!--Dette skal bort etterhvert-->
-<a href="approveHandin.jsp">Click here to approve a hand-in</a>
-
-
 <div class="row hellomsg">
     <span>
         <h1>Hello ${firstName} ${lastName}</h1><br>

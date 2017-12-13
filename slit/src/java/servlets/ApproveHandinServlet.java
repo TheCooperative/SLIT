@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import db.DBConnectionManager;
@@ -35,7 +30,7 @@ public class ApproveHandinServlet extends HttpServlet {
             String sql ="UPDATE handin set feedback = ?, notes = ?, points = ? where m_id = ? and u_id = ?";
             ps = conn.prepareStatement(sql);
             String m_id = request.getParameter("moduleId");
-            String u_id = request.getParameter("userId");
+            String u_id = request.getParameter("studentId");
             
             String newFeedback = request.getParameter("feedback");
             String newNotes = request.getParameter ("notes");
@@ -47,7 +42,8 @@ public class ApproveHandinServlet extends HttpServlet {
                 ps.setInt(3, newPoints);
                 ps.setString(4, m_id);
                 ps.setString(5, u_id);
-                ps.executeUpdate();        
+                ps.executeUpdate();
+                response.sendRedirect("teacherHome.jsp");
         }   
         catch (SQLException e){
             System.out.println("Driver not found "+e);

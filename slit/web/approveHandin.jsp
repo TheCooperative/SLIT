@@ -39,75 +39,73 @@
 %> 
 
         <div class="row">
-        <div class="box">
+            <div class="box">
             <h2>Choose module</h2>
-                <form method="post" action="fileUpload" enctype="multipart/form-data">
-                    <select name="moduleId">
+                <select name="moduleId">
 <%
-                    while (rs.next()) {
+                    while (rs.next()) { System.out.println(rs.getString("id"));
 %>
-                        <option value=<%= rs.getString("id")%>>Module <%= rs.getString("id")%></option>
+                    <option value=<%= rs.getInt("id")%>>Module <%= rs.getString("id")%></option>
 <%
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 %>
-                    </select>
+                </select>
+            </div>
+        </div>
 
-                    <%
-               
-                conn = DBConnectionManager.getConnection();
+<%
                 try {
-                    String sql = "select id, firstName, lastName from useraccount where role = 0";
-                    ps = conn.prepareStatement(sql);
+                    String sql1 = "select id, firstName, lastName from useraccount where role = 0";
+                    ps = conn.prepareStatement(sql1);
 
-                    ResultSet rs = ps.executeQuery(sql);
+                    ResultSet rs1 = ps.executeQuery(sql1);
 %> 
 
         <div class="row">
-        <div class="box">
+            <div class="box">
             <h2>Choose Student</h2>
-                <form method="post" action="fileUpload" enctype="multipart/form-data">
-                    <select name="Student">
+                <select name="studentId">
 <%
-                    while (rs.next()) {
+                    while (rs1.next()) { System.out.println(rs1.getString("id"));
 %>
-        <option value=<%= rs.getInt("id")%>> <%= rs.getString("firstName")%> <%= rs.getString("lastName")%> </option> 
+                    <option value=<%= rs1.getInt("id")%>> <%= rs1.getString("firstName")%> <%= rs1.getString("lastName")%> </option> 
 <%
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 %>
-                    </select>
-            
-      
-            <h2>Choose Score</h2>
-            <select name = "points">
-                <option value ="1">1</option>
-                <option value ="2">2</option>
-                <option value ="3">3</option>
-                <option value ="4">4</option>
-                <option value ="5">5</option>
-                <option value ="6">6</option>
-                <option value ="7">7</option>
-                <option value ="8">8</option>
-                <option value ="9">9</option>
-                <option value ="10">10</option>
-            </select>
+                </select>
+            </div>
+        </div>
 
-            <input type="submit" value="submit"> <p>
-               
-            </p>
-            
-            <textarea rows="6" cols="60" name = "feedback" placeholder="Comment"></textarea> <p>
-                
-            </p>
-            
-            <textarea rows="6" cols="60" name ="notes" placeholder="Write notes for yourself"></textarea>
-   
+        <h2>Choose Score</h2>
+        <select name = "points">
+            <option value ="1">1</option>
+            <option value ="2">2</option>
+            <option value ="3">3</option>
+            <option value ="4">4</option>
+            <option value ="5">5</option>
+            <option value ="6">6</option>
+            <option value ="7">7</option>
+            <option value ="8">8</option>
+            <option value ="9">9</option>
+            <option value ="10">10</option>
+        </select>
+        
+        <br><br>
+
+        <textarea rows="6" cols="60" name = "feedback" placeholder="Comment" required></textarea>
+        
+        <br>
+
+        <textarea rows="6" cols="60" name ="notes" placeholder="Write notes for yourself" required></textarea>
+        
+        <br>
+        
+        <input type="submit" value="submit">
         </form>    
     </body>
