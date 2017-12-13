@@ -28,10 +28,11 @@
     try {
         int temp = (Integer) session.getAttribute("id");
         String sql = "select u_id, m_id, points, feedback, notes, fileName, deliveryDate, title from module inner join handIn on module.id = handIn.m_id where u_id = " + temp;
+        
         ps = conn.prepareStatement(sql);
         
         ResultSet rs = ps.executeQuery(sql);  
- 
+        
         while (rs.next()) {
 %>
                     <div class="mod_inf">
@@ -56,14 +57,44 @@
                         <p class="mod_task"><%= rs.getString("deliveryDate")%></p>
                         <br>
                         <a href="#">download module</a>
-                    </div>
-<%
+                    </div>                        
+<%      
         }
-        conn.close();
+        
     } catch (Exception e) {
         e.printStackTrace();
     }
 %>
+
+<%
+    try {
+         
+        String sql= "select m_id, avg(points) from handIn group by m_id";
+        ps = conn.prepareStatement(sql);
+        
+        ResultSet rs = ps.executeQuery(sql);  
+        
+        while (rs.next()) {
+%>
+            <div class="mod_avg">
+                        <table class="handIns">
+                            <tr>
+                                <td>Module <%= rs.getString("m_id")%></td>
+                                <td><%= rs.getString("avg(points)")%></td>
+                            </tr>
+                        </table>
+            </div>
+
+<%
+        }
+    }
+      
+    catch (Exception e){
+        e.printStackTrace();
+    }
+%>
+
+
                 </div>
             </div>
         </center>
