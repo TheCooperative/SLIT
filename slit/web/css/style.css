@@ -276,6 +276,53 @@ select:focus {
 /*--END HOME PAGE--*/
 
 
+/*--SEARCH PAGE--*/
+
+.searchSection {
+    text-align: center;
+}
+
+.searchResult {
+    text-align: center;
+}
+
+.searchResult a {
+    text-decoration: none;
+    font-size: 16px;
+}
+.searchResult a:hover {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.searchSection input[type="text"]{
+    border: 1px solid #e5e5e5;
+    margin-top: 65px;
+    width: 30%;
+    height: 35px;
+    margin-bottom: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+    margin-right: 0;
+}
+
+.searchSection input[type="submit"] {
+    width: 5%;
+    height: 35px;
+    margin-left: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #5C80BC;
+    color: #fff;
+}
+
+.searchSection input[type="submit"]:hover {
+    background-color: #20AD75;
+}
+/*--END SEARCH PAGE--*/
+
+
 /*--REUSEABLES--*/
 .row {
     max-width: 1140px;
