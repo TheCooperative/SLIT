@@ -31,7 +31,7 @@
         </form>
         
 <%
-    } else {
+    } 
 %>
         <h1>News</h1>
         <table border="1">
@@ -61,7 +61,7 @@
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    
 %>
         </table>
     </center>

@@ -54,6 +54,8 @@ public class RegisterServlet extends HttpServlet {
                 if(newReferral != null){
                     if(newReferral.equals("202")){
                         role = 1;
+                    } else {
+                        role = 0;
                     }
                 } else {
                     role = 0;
