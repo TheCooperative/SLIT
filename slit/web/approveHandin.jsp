@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<%-- 
+    Document   : message
+    Created on : 10.nov.2017, 10:00:34
+    Author     : Joakim Meisner
+--%>
 
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -112,6 +111,3 @@ and open the template in the editor.
    
         </form>    
     </body>
-    
-
-

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lib;
 
 import db.DBConnectionManager;
@@ -28,15 +23,16 @@ public class ClassOverview {
             ps = conn.prepareStatement(testSQL);     
             ps.setInt(1, user);
             ps.setInt(2, module);
-            ResultSet test = ps.executeQuery();
-            while(test.next()){
-                points = test.getInt("points");  
-            } 
-
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                points = rs.getInt("points");
+            } else if (!rs.next()) {
+                points = 0;
+            }
         } catch (SQLException e) {
             System.out.println("Driver not found "+ e);
         }
-        //System.out.println(points + " from get Module Points");
         return points;
     }
 }

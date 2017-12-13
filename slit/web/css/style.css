@@ -1,12 +1,8 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : Nov 9, 2017, 4:29:04 PM
     Author     : Martin
 */
+
 /*--TOP NAVIGATION BAR--*/
 html {
     font-family: 'Roboto Condensed', sans-serif;
@@ -104,6 +100,7 @@ body{
     }
 }
 /*--END TOP NAVIGATION BAR--*/
+
 
 /*--BEGINNING HOME PAGE--*/
 .hellomsg {
@@ -277,6 +274,8 @@ select:focus {
 }
 
 /*--END HOME PAGE--*/
+
+
 /*--REUSEABLES--*/
 .row {
     max-width: 1140px;

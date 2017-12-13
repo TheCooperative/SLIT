@@ -24,7 +24,7 @@
                 <div id="navLinks">
                     <a href="home.jsp"><i class="fa fa-home" aria-hidden="false"></i> Home</a>
                     <a href="profile.jsp"><i class="fa fa-user" aria-hidden="false"></i> Profile</a>
-                    <a href="newsFeed.jsp"><i class="fa fa-envelope" aria-hidden="true"></i> News</a>
+                    <a href="newsFeed.jsp"><i class="fa fa-envelope" aria-hidden="false"></i> Announcements</a>
                     <form method="POST" action="LogoutServlet">
                     <input type="submit" value="Logout">
                     </form>

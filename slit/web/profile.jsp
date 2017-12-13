@@ -55,8 +55,8 @@
         String sql = "select u_id, m_id, points, feedback, notes, fileName, deliveryDate, title from module inner join handIn on module.id = handIn.m_id where u_id = " + temp;
         ps = conn.prepareStatement(sql);
         
-        ResultSet rs = ps.executeQuery(sql);  
- 
+        ResultSet rs = ps.executeQuery(sql);
+        
         while (rs.next()) {
 %>
                     <div class="mod_inf">
@@ -64,7 +64,13 @@
                             <tr>
                                 <td>Module <%= rs.getString("m_id")%></td>
                                 <td><%= rs.getString("title")%></td>
-                                <td><%= rs.getString("points")%></td>
+                                <td>
+<%          if(rs.getString("points") != null){     %>
+                <%= rs.getString("points")%>
+<%          } else {                                %>
+                <font color="red">Pending</font>
+<%          }                                       %>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -72,15 +78,28 @@
                     <div class="mod_desc">
                         <h1>Module <%= rs.getString("m_id")%> - <%= rs.getString("title")%></h1>
                         <label for="mod_desc">Feedback</label>
-                        <p class="mod_des"><%= rs.getString("feedback")%></p>
+                        <p class="mod_des">
+<%          if(rs.getString("feedback") != null){     %>
+                <%= rs.getString("feedback")%>
+<%          } else {                                %>
+                <font color="red">Pending</font>
+<%          }                                       %>                             
+                        
+                        </p>
                         <label for="mod_goals">Notes</label>
-                        <p class="mod_goals"><%= rs.getString("notes")%></p>
+                        <p class="mod_goals">
+<%          if(rs.getString("notes") != null){     %>
+                <%= rs.getString("notes")%>
+<%          } else {                                %>
+                <font color="red">Pending</font>
+<%          }                                       %>                            
+                        </p>
                         <label for="mod_resources">File</label>
                         <p class="mod_resources"><%= rs.getString("fileName")%></p>
                         <label for="mod_task">Delivered</label>
                         <p class="mod_task"><%= rs.getString("deliveryDate")%></p>
-                        <br>
-                        <a href="#">download module</a>
+                        <a href="#">Download Hand-in</a> <br>
+                        <a href="#">Correct Hand-in</a>
                     </div>
 <%
         }

@@ -50,6 +50,7 @@
                     <input type="text" name="lastName" placeholder="Enter last name" required><br>
                     <input type="email" name="email" placeholder="Enter email" required><br>
                     <input type="password" name="password" placeholder="Enter password" required><br>
+                    <input type="text" name="referral" placeholder="Referral code"><br>
                     <input type="submit" name="registerButton" value="register"><br>
                     <%
                     String register_error = (String) request.getAttribute("error");
