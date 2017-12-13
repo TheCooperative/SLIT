@@ -24,8 +24,6 @@
 <!------------------------------------------>
 
 
-    </span>
-
 <%
     Connection conn;
     PreparedStatement ps;
