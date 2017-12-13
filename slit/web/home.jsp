@@ -25,6 +25,13 @@
 
 
 <!--Dette skal bort etterhvert-->
+<<<<<<< HEAD
+<a href="createModule.jsp">Click here to add new Module</a>
+<a href="fileUpload.jsp">Click here to upload new Module</a>
+<!------------------------------------------>
+
+
+=======
 <a href="approveHandin.jsp">Click here to approve a hand-in</a>
 
 
@@ -39,6 +46,7 @@
     </span>
 </div>
               
+>>>>>>> f71e70163649360718c8e8aafe9ff4b26f2de240
 <%
     Connection conn;
     PreparedStatement ps;
