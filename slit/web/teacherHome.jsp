@@ -52,7 +52,7 @@
         while(rs.next()){
 %>
                 <tr>
-                    <td><%=rs.getString("lastName")%>, <%=rs.getString("firstName")%></td>
+                    <td><a href="#"> <%=rs.getString("lastName")%>, <%=rs.getString("firstName")%> </a></td>
 <%
             //Gets the points on each module
             for(int stepper = 0; stepper <= 4; stepper ++){

@@ -16,6 +16,14 @@
 <jsp:include page="includes/header.jsp"></jsp:include>
 
 <%
+    // If the user is not signed in, redirect the user to index.jsp
+    if (session.getAttribute("id") == null) {
+        response.sendRedirect("index.jsp");
+    }
+    if ((String) session.getAttribute("role") == "Teacher"){
+        response.sendRedirect("searchStudent.jsp");
+    }
+
     Connection conn;
     PreparedStatement ps;
     conn = DBConnectionManager.getConnection();
@@ -27,6 +35,7 @@
             
             <table border="1">
                 <tr>
+                    <td></td>
                     <td> Modul: 1 </td>
                     <td> Modul: 2 </td>
                     <td> Modul: 3 </td>
@@ -35,14 +44,35 @@
                 </tr>
                 
                 <tr>
+                    <td> You: </td>
 <%
-            //Gets the points on each module
-            for(int stepper = 0; stepper <= 4; stepper ++){
-                int modules = ClassOverview.getModulePoints(temp, stepper+1);
+        //Gets the points on each module
+        for(int stepper = 0; stepper <= 4; stepper ++){
+            int modules = ClassOverview.getModulePoints(temp, stepper+1);
 %>
                     <td><%= modules %></td>
 <%
+        }
+%>
+                </tr>
+                
+                <tr>
+                    <td> Average: </td>
+<%
+        try {
+            String sql= "select m_id, round(avg(points), 2) from handIn group by m_id";
+            ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery(sql);  
+
+            while (rs.next()) {
+%>
+                    <td><%= rs.getString("round(avg(points), 2)")%></td>
+<%
             }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 %>
                 </tr>
             </table>

@@ -1,17 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
-import db.DBConnectionManager;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,13 +11,14 @@ import lib.userSearch;
 
 /**
  *
- * @author Krist
+ * @author Kristian
  */
 @WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
 public class SearchServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
 
         String searchName = request.getParameter("searchName");
         userSearch.searchUser(searchName);
@@ -43,7 +33,5 @@ public class SearchServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("searchStudent.jsp");
             rd.include(request, response);
         }
-        
-
     }
 }

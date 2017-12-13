@@ -54,3 +54,5 @@ create table news(
     constraint pk_post_id PRIMARY KEY(post_id),
     constraint fk_user_id foreign key (userID) references userAccount (id)
 );
+
+drop table news;

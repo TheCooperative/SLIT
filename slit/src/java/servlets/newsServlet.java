@@ -35,8 +35,8 @@ public class newsServlet extends HttpServlet {
             int userID = (Integer) session.getAttribute("id");
             String msg = request.getParameter("message");
             
-            System.out.println(userID);
-            System.out.println(msg);
+            //System.out.println(userID);
+            //System.out.println(msg);
             
             ps.setInt(1, userID);
             ps.setString(2, msg);

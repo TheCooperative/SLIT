@@ -43,7 +43,7 @@
             <h2>Choose module</h2>
                 <select name="moduleId">
 <%
-                    while (rs.next()) { System.out.println(rs.getString("id"));
+                    while (rs.next()) {
 %>
                     <option value=<%= rs.getInt("id")%>>Module <%= rs.getString("id")%></option>
 <%
@@ -69,7 +69,7 @@
             <h2>Choose Student</h2>
                 <select name="studentId">
 <%
-                    while (rs1.next()) { System.out.println(rs1.getString("id"));
+                    while (rs1.next()) {
 %>
                     <option value=<%= rs1.getInt("id")%>> <%= rs1.getString("firstName")%> <%= rs1.getString("lastName")%> </option> 
 <%

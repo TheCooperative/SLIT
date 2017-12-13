@@ -20,6 +20,9 @@
     if (session.getAttribute("id") == null) {
         response.sendRedirect("index.jsp");
     }
+    if ((String) session.getAttribute("role") == "Student"){
+        response.sendRedirect("profile.jsp");
+    }
 %>
 <div class="row">
     <div class="searchSection">
@@ -35,7 +38,7 @@
         <%
             if (request.getAttribute("searchList") != null) {
                 ArrayList<String> searchList = (ArrayList) request.getAttribute("searchList");
-                System.out.println(searchList);
+                //System.out.println(searchList);
                 for (int i = 0; i < searchList.size(); i++) {
                     out.println("<a href='#'>"+searchList.get(i)+"</a>");
                     out.println("<br>");
