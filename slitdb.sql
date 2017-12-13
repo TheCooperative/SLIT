@@ -1,3 +1,5 @@
+create schema slitdb;
+
 use slitdb;
 
 create table userAccount(
@@ -42,3 +44,13 @@ create table handIn(
 );
 
 drop table handIn;
+
+create table news(
+	post_id int auto_increment,
+    userID int,
+    message text,
+    timePosted datetime,
+    
+    constraint pk_post_id PRIMARY KEY(post_id),
+    constraint fk_user_id foreign key (userID) references userAccount (id)
+);
