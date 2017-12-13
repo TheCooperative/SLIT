@@ -21,27 +21,31 @@
         response.sendRedirect("index.jsp");
     }
 %>
-<form method="POST" action="Search" enctype="multipart/form-data">
+<div class="row">
+    <div class="searchSection">
+        <form method="POST" action="SearchServlet">
 
-    <input type="text" name="nameToSearchFor" placeholder="Search">
-    <input type="submit" value="Search">
-</form>
-<%
-    if (request.getAttribute("searchList") != null) {
-        ArrayList searchList = (ArrayList) request.getAttribute("searchList");
-        for (int i = 0; i < searchList.size(); i++) {
-            
-            out.println(searchList.get(i));
-            out.println("<br>");
-            
-            
-            
-        }
-    }
-            
-      
-%>
+            <input type="text" name="searchName" placeholder="Enter name to search for">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="searchResult">
+        <%
+            if (request.getAttribute("searchList") != null) {
+                ArrayList<String> searchList = (ArrayList) request.getAttribute("searchList");
+                System.out.println(searchList);
+                for (int i = 0; i < searchList.size(); i++) {
+                    out.println("<a href='#'>"+searchList.get(i)+"</a>");
+                    out.println("<br>");
+                    out.println("<br>");
+                }
+            }
 
+        %>
+    </div>
+</div>
 </body>
 
 
